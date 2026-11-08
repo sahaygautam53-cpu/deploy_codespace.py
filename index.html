@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSpace // Micro Code Snippets & UI Blocks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+            </div>
+            <span>CodeSpace.py</span>
+        </div>
+        <div class="status-badge">⚡ Instant UPI Auto-Delivery</div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="ide-container">
+        
+        <!-- Left Sidebar Repository -->
+        <div class="sidebar panel" id="sidebar-panel">
+            <div class="panel-content">
+                <div class="tree-title">📁 Repository</div>
+                <div id="file-tree-container"></div>
+            </div>
+            <div class="secret-admin-trigger" onclick="triggerAdminModal()">🔑 v1.0.4-sys</div>
+            
+            <!-- Border Divider Collapse Handle (Left) -->
+            <div class="divider-handle left-handle" onclick="togglePanel('sidebar-panel')" title="Toggle Sidebar">
+                <span class="handle-icon">‹</span>
+            </div>
+        </div>
+
+        <!-- CENTER PANEL: Main Live Interactive Preview (Large View) -->
+        <div class="preview-section panel" id="main-preview-panel">
+            <div class="tabs-bar">
+                <div class="tab active" id="tab-name">appointment_form.html</div>
+                <span class="preview-status-indicator">● LIVE INTERACTIVE RUNNER</span>
+            </div>
+            
+            <div class="main-preview-viewport">
+                <div id="interactive-preview"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Blurred Source Code & Buy Section -->
+        <div class="code-buy-panel panel" id="code-buy-panel">
+            <!-- Border Divider Collapse Handle (Right) -->
+            <div class="divider-handle right-handle" onclick="togglePanel('code-buy-panel')" title="Toggle Code & Buy Panel">
+                <span class="handle-icon">›</span>
+            </div>
+
+            <div class="panel-content">
+                <!-- Protected Code Box -->
+                <div class="code-wrapper">
+                    <div class="code-box-protected" id="code-content"></div>
+                    <div class="code-lock-overlay">
+                        <div class="lock-card">
+                            <div class="lock-icon">🔒</div>
+                            <h4>Source Code Protected</h4>
+                            <p>Complete source code (.ZIP bundle) unlocks instantly after UPI payment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buy & Checkout Card -->
+                <div class="buy-card">
+                    <h3 id="snippet-title">Component</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Ready-to-use clean logic component.</p>
+                    <div class="price-tag" id="snippet-price">₹39</div>
+                    <ul class="features-list">
+                        <li>✓ Complete Source Code (.ZIP)</li>
+                        <li>✓ Mobile Responsive & Clean Code</li>
+                        <li>✓ Instant Auto UPI Download</li>
+                    </ul>
+                    <button class="btn-upi" onclick="openPaymentModal()">🚀 Buy & Unlock Code</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="payModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePaymentModal()">&times;</span>
+            <h3>Instant UPI Pay</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Scan via GPay, PhonePe, or Paytm:</p>
+            <img id="upi-qr-image" src="" alt="UPI QR" style="border-radius: 8px; border: 1px solid var(--border); margin-bottom: 15px;">
+            <p style="font-size: 0.75rem; color: var(--accent-orange);">Once paid, the source zip unlocks automatically.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="adminModal">
+        <div class="modal-content" style="width: 420px;">
+            <span class="close-btn" onclick="closeAdminModal()">&times;</span>
+            <h3 style="color: var(--accent-blue); margin-bottom: 5px;">Upload Code Snippet</h3>
+            <form class="admin-form" onsubmit="handleNewSnippetUpload(event)">
+                <input type="text" id="new-filename" placeholder="File Name (e.g. form.html)" required>
+                <input type="text" id="new-title" placeholder="Title" required>
+                <input type="text" id="new-price" placeholder="Price (e.g. ₹39)" required>
+                <textarea id="new-code" placeholder="Full Raw Code (Hidden behind blur)" required></textarea>
+                <textarea id="new-preview" placeholder="Live Preview HTML Block" required></textarea>
+                <button type="submit" class="btn-upi" style="background: var(--accent-blue);">Publish Snippet</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
